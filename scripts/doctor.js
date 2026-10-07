@@ -1,0 +1,13 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const {spawnSync}=require('node:child_process');
+const root=path.join(__dirname,'..');
+const venv=path.join(root,'.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python');
+const python=process.env.EVENT_PYTHON||(fs.existsSync(venv)?venv:'python');
+let failed=false;
+const report=(ok,message)=>{console.log(`${ok?'OK':'ERROR'} ${message}`);if(!ok)failed=true;};
+report(Number(process.versions.node.split('.')[0])>=20,`Node.js ${process.versions.node} (20 이상 필요)`);
+const result=spawnSync(python,['-c','import sys,pypdf; assert sys.version_info >= (3,10); print(sys.version.split()[0]); print("pypdf " + pypdf.__version__)'],{encoding:'utf8',windowsHide:true});
+report(!result.error&&result.status===0,`Python/PDF: ${result.stdout?.trim()||'setup.cmd 또는 pip install -r requirements.txt 실행 필요'}`);
+for(const file of ['events.html','event-search.js','event-sources.json','event-corrections.json','extract-event-document.py'])report(fs.existsSync(path.join(root,file)),file);
+if(failed)process.exitCode=1;

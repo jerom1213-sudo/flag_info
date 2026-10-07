@@ -1,0 +1,13 @@
+db/
+node_modules/
+web-deploy/dist/
+.env
+.env.*
+*.log
+.event-verification/
+.venv/
+__pycache__/
+release/
+.openai/
+.agents/
+web-deploy/

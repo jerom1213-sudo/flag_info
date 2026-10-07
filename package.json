@@ -1,0 +1,13 @@
+{
+  "name": "the-flag-event-finder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "광주·전남 공식 자료 기반 행사 사전정보 조회",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node event-server.js",
+    "doctor": "node scripts/doctor.js",
+    "test": "node event-search.test.js && node event-server.test.js",
+    "package": "node scripts/package-release.js"
+  }
+}
