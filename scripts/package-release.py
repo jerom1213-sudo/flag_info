@@ -3,7 +3,7 @@ from pathlib import Path
 import shutil, zipfile
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/'release'/'the-flag-event-finder'
-FILES=['package.json','requirements.txt','event-server.js','event-server.test.js','events.html','event-search.js','event-search.test.js','event-sources.json','event-corrections.json','extract-event-document.py','setup.cmd','start.cmd','scripts/setup-windows.ps1','scripts/doctor.js','scripts/package-release.js','scripts/package-release.py','.github/workflows/check.yml','.gitignore','DISTRIBUTION.md']
+FILES=['package.json','requirements.txt','event-server.js','event-server.test.js','events.html','event-search.js','event-search.test.js','event-sources.json','event-corrections.json','extract-event-document.py','setup.cmd','start.cmd','scripts/setup-windows.ps1','scripts/render-build.sh','scripts/doctor.js','scripts/package-release.js','scripts/package-release.py','.github/workflows/check.yml','.gitignore','DISTRIBUTION.md']
 OUT.mkdir(parents=True,exist_ok=True)
 for name in FILES:
     target=OUT/name

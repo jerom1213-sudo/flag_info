@@ -38,6 +38,24 @@ GitHub Pages는 정적 호스팅이므로 이 앱의 Node.js 조회 API와 Pytho
 - [GitHub: 로컬 코드 업로드](https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github)
 - [GitHub Pages 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
 
+## Render 무료 웹 서버
+
+Render에서 기존 GitHub 저장소를 연결해 아래 설정으로 Web Service를 생성합니다.
+
+- Repository: `https://github.com/jerom1213-sudo/flag_info`
+- Branch: `main`
+- Runtime: `Node`
+- Region: `Singapore`
+- Instance type: **Free**
+- Build command: `bash scripts/render-build.sh`
+- Start command: `npm start`
+- Environment: `HOST=0.0.0.0`, `NODE_ENV=production`, `NODE_VERSION=24`
+- Health check path(설정 가능한 경우): `/health`
+
+Render가 제공하는 `PORT`를 그대로 사용합니다. 배포가 완료되면 Render 서비스의 HTTPS 주소에 `/events`를 붙여 접속합니다. 기본 주소 `/`에서도 행사 화면을 제공합니다. GitHub `main` 업데이트 시 자동 배포됩니다.
+
+무료 서버는 미접속 시 대기 상태로 전환되므로 첫 접속에 시간이 걸릴 수 있습니다. 로컬 파일은 영구 보관되지 않으며, 행사 보완 정보는 GitHub의 `event-corrections.json`으로 관리합니다. [무료 한도와 정책](https://render.com/docs/free)을 확인하고 비용 없이 운영하려면 Free 요금제를 유지하세요.
+
 ## macOS / Linux 또는 명령줄 사용
 
 Node.js 20 이상과 Python 3.10 이상을 설치한 후 앱 폴더에서 실행합니다.
